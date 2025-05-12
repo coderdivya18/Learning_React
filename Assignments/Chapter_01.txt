@@ -1,0 +1,70 @@
+# Theory Assignment 01:
+
+● What is Emmet?
+A plugin for code editors (e.g., VS Code).
+Speeds up HTML/CSS writing using abbreviations.
+Example: div>ul>li*3 expands into a full HTML structure.
+Saves time and improves productivity.
+ -------------------------------------------------------
+● Difference between a Library and Framework?
+Library:
+Collection of functions you call.
+You control the flow.
+Example: React.
+
+Framework:
+It calls your code.
+Framework controls the flow (Inversion of Control).
+Example: Angular, Vue.
+-----------------------------------------------------------
+
+● What is CDN? Why do we use it?
+CDN (Content Delivery Network) is a network of distributed servers that deliver content (like JS files, CSS, images)
+quickly to users based on their geographical location.
+Why use it?
+Faster load time
+Reduced server load
+Global availability
+Caching and reliability
+
+-----------------------------------------------------------------
+● Why is React known as React?
+React is named for its reactive nature—it reacts to changes in data and updates the UI efficiently. The name emphasizes:
+Reusability of components
+Reactive updates to the DOM
+Declarative UI design
+
+-------------------------------------------------------------------------
+
+● What is crossorigin in script tag?
+The crossorigin attribute in <script> tells the browser how to handle CORS (Cross-Origin Resource Sharing) for the
+script:
+anonymous: Makes a CORS request without credentials
+use-credentials: Sends credentials like cookies
+Used when loading resources (like JS files) from another domain and for proper handling of errors in console
+
+-----------------------------------------------------------------------
+
+● What is difference between React and ReactDOM
+React: Core library for building components and managing state/UI logic.
+ReactDOM: Handles rendering React components to the DOM in web apps.
+
+------------------------------------------------------------------------
+
+● What is difference between react.development.js and react.production.js files via CDN?
+react.development.js:
+Unminified
+Includes helpful warnings, error messages
+Used during development
+
+react.production.js:
+Minified and optimized
+No warnings or debug info
+Used in production (live websites)
+
+-----------------------------------------------
+
+● What is async and defer?
+Both control how scripts are loaded asynchronously to avoid blocking the HTML parsing.
+Use async when script doesn’t depend on others.
+Use defer when order matters and script interacts with DOM.
