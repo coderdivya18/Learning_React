@@ -4,7 +4,8 @@
   "description": "Learning Namaste React by Akshay Saini",
   "scripts": {
     "test": "jest",
-    "start": "index.js"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",
