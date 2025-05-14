@@ -1,0 +1,102 @@
+● Is JSX mandatory for React?
+No, JSX is not mandatory.
+React can be written using React.createElement() directly.
+JSX is just syntactic sugar that makes code easier to write and read.
+Example:
+// Without JSX
+React.createElement('h1', {}, 'Hello');
+
+// With JSX
+<h1>Hello</h1>
+
+---------------------------------------------------------------------
+● Is ES6 mandatory for React?
+Not mandatory, but highly recommended.
+Most modern React code uses ES6+ features like:
+Arrow functions
+let / const
+Destructuring
+Modules (import/export)
+Spread/rest operators
+
+---------------------------------------------------------------------------
+● {TitleComponent} vs {<TitleComponent/>} vs {<TitleComponent></TitleComponent>} in JSX
+Syntax	                                             Meaning
+{TitleComponent}	                                Renders the reference to the component (⚠️ doesn’t render JSX)
+{<TitleComponent/>}	                                Invokes/render the component (self-closing)
+{<TitleComponent></TitleComponent>}             	Same as above, just not self-closing
+
+✅ Use <TitleComponent /> or <TitleComponent></TitleComponent> to actually render the component.
+-----------------------------------------------------------------------------------------------
+● How can I write comments in JSX?
+Inside JSX, use: {/* This is a comment */}
+Outside JSX, use normal JS comments:// This is a JS comment
+
+----------------------------------------------------------------------------
+● What is <React.Fragment></React.Fragment> and <> </>?
+Both are used to group multiple elements without adding extra nodes to the DOM.
+<React.Fragment>
+  <h1>Hello</h1>
+  <p>World</p>
+</React.Fragment>
+
+Or shorthand:
+<>
+  <h1>Hello</h1>
+  <p>World</p>
+</>
+
+------------------------------------------------------------------------------
+
+What is Virtual DOM?
+The Virtual DOM is a lightweight JavaScript representation of the actual DOM. React creates and maintains this in-memory representation of the UI, which allows it to perform calculations and comparisons before committing changes to the real DOM. This approach improves performance by minimizing direct manipulation of the DOM, which is typically slower.
+
+What is Reconciliation in React?
+Reconciliation is React's algorithm for comparing two Virtual DOM trees to determine which parts need to be updated in the real DOM. When state or props change, React creates a new Virtual DOM tree and compares it with the previous one. It then updates only the parts of the real DOM that have changed, rather than re-rendering the entire page.
+
+What is React Fiber?
+React Fiber is a complete rewrite of React's core reconciliation algorithm introduced in React 16. It allows React to:
+
+Split rendering work into chunks
+Pause and resume work
+Assign priority to different types of updates
+Reuse previously completed work
+Abort work when no longer needed
+Fiber enables incremental rendering, which improves the perceived performance of complex applications by preventing UI freezing during large component trees rendering.
+
+Why we need keys in React? When do we need keys in React?
+Keys help React identify which items have changed, been added, or been removed in lists. They provide a stable identity to elements across renders.
+
+We need keys when rendering lists of elements, especially when the list can change (items added, removed, or reordered). Keys ensure React can efficiently update only the necessary components rather than recreating the entire list.
+
+Can we use index as keys in React?
+While technically possible, using array indices as keys is generally not recommended because:
+
+It can cause performance issues when lists are reordered, filtered, or items are added/removed in the middle
+It may lead to component state bugs when list items can move
+Indices are only acceptable as keys when:
+
+The list is static (never reordered or filtered)
+Items have no stable IDs
+The list will never be reordered or filtered
+What is props in React?
+Props (short for properties) are read-only inputs passed from parent components to child components. They:
+
+Allow data to flow down the component tree
+Enable component reusability and composition
+Can contain any JavaScript value (primitives, objects, functions, etc.)
+Props are passed like HTML attributes in JSX and received as a single object parameter in function components or this.props in class components.
+
+What is a Config Driven UI?
+A Config Driven UI is an approach where the user interface is rendered based on a configuration object or data, typically fetched from a server. This pattern:
+
+Separates UI structure from business logic
+Enables dynamic UI changes without code deployments
+Facilitates A/B testing and personalization
+Allows non-developers to modify the UI through configuration changes
+For example, different users might see different features, layouts, or content based on their region, preferences, or role, all controlled by configuration data rather than hard-coded UI components.
+
+
+
+
+

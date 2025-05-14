@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aafd69a6-60c5-46b3-86b3-43d5a6e88589" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assignments/Chapter_03.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Header.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignments/Chapter_04.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Body.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Header.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/RestaurantCard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/mockData.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/Header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -51,6 +57,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/FrontendPractice/NamasteReact/images&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -65,8 +72,13 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\FrontendPractice\NamasteReact\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\FrontendPractice\NamasteReact\src" />
       <recent name="D:\FrontendPractice\NamasteReact" />
+      <recent name="D:\FrontendPractice\NamasteReact\dist" />
       <recent name="D:\FrontendPractice\NamasteReact\Basics" />
     </key>
   </component>
@@ -94,7 +106,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746946485349</updated>
-      <workItem from="1746946486400" duration="15561000" />
+      <workItem from="1746946486400" duration="29066000" />
     </task>
     <servers />
   </component>

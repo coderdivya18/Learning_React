@@ -1,3 +1,131 @@
-#heading {
-    color: red;
+#root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Manrope', sans-serif;
+}
+
+.app-container {
+    /*max-width: 1200px;*/
+    margin: 0 auto; /* centers the content horizontally */
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar > ul {
+    display: flex;
+    gap: 18px;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+.navbar > ul > li {
+    font-size: 18px;
+    font-weight: bold;
+    gap: 18px;
+}
+
+/*Body*/
+.search-container {
+    margin: 50px 0;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-container > input {
+    padding: 6px 12px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.search-container > button {
+    padding: 6px 12px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.restaurants-container {
+    margin: 50px 0;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/*Restaurant Card*/
+.restaurant-card {
+    width: 320px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    background: #fff;
+}
+
+.restaurant-card:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+    position: relative;
+}
+
+.card-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+
+.card-content {
+    padding: 12px 16px;
+}
+
+.restaurant-name {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.details {
+    font-size: 14px;
+    color: #555;
+    margin: 4px 0;
+}
+
+.rating {
+    color: green;
+}
+
+.dot {
+    margin: 0 6px;
+}
+
+.cuisine,
+.location {
+    font-size: 14px;
+    color: #777;
+    margin: 2px 0;
 }
