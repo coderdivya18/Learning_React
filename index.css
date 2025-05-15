@@ -40,13 +40,23 @@
 }
 
 /*Body*/
-.search-container {
+.features-container {
     margin: 50px 0;
     display: flex;
-    gap: 10px;
-    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
 }
+
+.filter-btn {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 
 .search-container > input {
     padding: 6px 12px;
@@ -93,9 +103,10 @@
 
 .card-image img {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 200px;
     object-fit: cover;
+    border-radius: 8px;
+
 }
 
 

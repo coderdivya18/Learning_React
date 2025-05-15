@@ -1,0 +1,71 @@
+What is the difference between Named Export, Default export and * as export?
+Named Export:
+
+Allows exporting multiple values from a module
+Uses explicit naming: export const MyComponent = () => {...}
+Must be imported using the exact name within curly braces: import { MyComponent } from './file'
+Can have multiple named exports in a single file
+
+Default Export:
+
+Only one per module
+Represents the main value being exported: export default MyComponent
+Can be imported with any name: import AnyName from './file'
+Typically used for a module's primary functionality
+
+* as Export (Namespace Import):
+
+Not actually an export, but an import syntax
+Imports all exports from a module as properties of a single object:
+import * as Components from './components'
+Accessed using dot notation: Components.MyComponent
+Helps avoid naming collisions and organize imports
+
+----------------------------------------------------------------------------
+What is the importance of config.js file?
+A config.js file centralizes configuration values and environment-specific settings. Its importance includes:
+
+Single source of truth for configuration constants (API URLs, feature flags, etc.)
+Easy environment switching (development, staging, production)
+Cleaner codebase by removing hardcoded values from components
+Simpler maintenance and updates (change in one place affects everywhere)
+Better security by isolating sensitive information
+Facilitates configuration-driven development practices
+
+------------------------------------------------------------------------------------------------------
+
+What are React Hooks?
+React Hooks are functions that let you "hook into" React state and lifecycle features from function components. Introduced in React 16.8, they allow you to:
+
+Use state and other React features without writing class components
+Reuse stateful logic between components
+Organize related code together instead of splitting it based on lifecycle methods
+
+Common built-in hooks include:
+
+useState: Adds state to function components
+useEffect: Handles side effects (like data fetching, subscriptions)
+useContext: Accesses context values
+useReducer: Manages complex state logic
+useRef: Persists values between renders without causing re-renders
+useMemo/useCallback: Optimize performance through memoization
+
+---------------------------------------------------------------------------------------------
+Why do we need a useState Hook?
+The useState hook is essential because:
+
+It enables function components to have local state (previously only possible in class components)
+Provides a simple way to declare and update reactive values
+Ensures components re-render when state changes
+Creates independent state variables with their own updater functions
+Preserves state between re-renders
+Enables more concise, readable component code compared to class components
+
+Basic usage:
+jsxconst [count, setCount] = useState(0);
+
+count is the state variable
+setCount is the function to update it
+0 is the initial value
+
+Without useState, function components would be limited to props-only and couldn't maintain their own internal state or respond to user interactions independently.

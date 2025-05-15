@@ -1,25 +1,33 @@
 //Restaurant Card Component
-const RestaurantCard = () => {
+
+import { CDN_URL } from "../utils/constants";
+
+const RestaurantCard = ({ resData }) => {
+  console.log(resData);
+  const { cloudinaryImageId, name, avgRating, cuisines, costForTwo, locality } =
+    resData?.info;
+
   return (
     <div className="restaurant-card">
       <div className="card-image">
         <img
           className="restaurant-image"
-          src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2025/3/24/60984e31-da50-4f8e-ae83-c1eff5f721c5_460379.jpg"
+          src={CDN_URL + cloudinaryImageId}
           alt="Burger"
           width="230px"
           height="180px"
         />
       </div>
       <div className="card-content">
-        <h2 className="restaurant-name">Burger King</h2>
+        <h2 className="restaurant-name">{name}</h2>
         <div className="details">
-          <span className="rating">⭐ 4.2</span>
+          <span className="rating">⭐ {avgRating}</span>
           <span className="dot">•</span>
-          <span className="time">40–45 mins</span>
+          <span className="time">{resData?.info?.sla?.deliveryTime} mins</span>
         </div>
-        <p className="cuisine">Burgers, American</p>
-        <p className="location">Madhapur</p>
+        <p className="cuisine">{cuisines.join(", ")}</p>
+        <p className="costForTwo">{costForTwo}</p>
+        <p className="location">{locality}</p>
       </div>
     </div>
   );

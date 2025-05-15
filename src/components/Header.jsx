@@ -1,9 +1,11 @@
 //Header Component
+import { LOGO_URL } from "../utils/constants";
+
 const Header = () => {
   return (
     <header className="header">
       <img
-        src="https://png.pngtree.com/png-vector/20230511/ourmid/pngtree-fast-food-burger-icon-vector-illustration-logo-template-png-image_7094486.png"
+        src={LOGO_URL}
         className="logo"
         alt="logo"
         width="100px"
