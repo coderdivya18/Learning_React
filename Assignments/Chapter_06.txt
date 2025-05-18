@@ -1,0 +1,168 @@
+What is a Microservice?
+A microservice is an architectural approach where an application is built as a collection of small, loosely coupled, independently deployable services. Each service:
+
+Handles a specific business function
+Runs in its own process
+Communicates via lightweight protocols (HTTP/REST, gRPC, messaging)
+Can be developed, deployed, and scaled independently
+Often has its own database or data storage
+----------------------------------------------------------------------------------------------------------------------------
+What is Monolith architecture?
+Monolith architecture is a traditional unified approach where an application is built as a single, self-contained unit. In a monolith:
+
+All components are interconnected and interdependent
+The application is deployed as a single unit
+Components share the same memory space and resources
+Typically shares a single database
+Changes to any part require rebuilding and redeploying the entire application
+
+---------------------------------------------------------------------
+What is the difference between Monolith and Microservice?
+Monolith:
+Single codebase, single deployment unit
+Simpler development workflow and testing
+Shared database and resources
+Tight coupling between components
+Limited technology flexibility (usually one tech stack)
+Scales as a single unit (harder to scale specific functions)
+
+Microservices:
+Multiple independent codebases and deployments
+Complex development, testing, and operational overhead
+Separate databases per service
+Loose coupling with well-defined interfaces
+Technology diversity (best tools for specific services)
+Granular scalability of individual services
+
+--------------------------------------------------------------------------------
+Why do we need a useEffect Hook?
+The useEffect hook is needed to:
+Perform side effects in function components (operations that can't happen during rendering)
+Handle lifecycle events like component mounting, updating, and unmounting
+Synchronize components with external systems (APIs, subscriptions, DOM manipulations)
+Control when code runs in relation to component renders
+Clean up resources to prevent memory leaks
+
+Examples of useEffect use cases:
+Data fetching
+Setting up subscriptions
+Manually changing the DOM
+Logging
+Setting up timers
+
+-------------------------------------------------------------------------------------------------------------------
+What is Optional Chaining?
+Optional chaining (?.) is a JavaScript feature that allows reading properties from deeply nested objects without explicitly checking if each reference in the chain is valid. If any reference is null or undefined, the expression short-circuits and returns undefined instead of throwing an error.
+
+javascript
+// Without optional chaining
+const streetName = user && user.address && user.address.street && user.address.street.name;
+
+// With optional chaining
+const streetName = user?.address?.street?.name;
+
+---------------------------------------------------------------------------------------------------------------------
+What is Shimmer UI?
+Shimmer UI is a placeholder visualization technique that shows a loading state before actual content appears. Instead of static loaders or spinners, shimmer UI:
+
+Mimics the layout of the expected content with gray shapes
+Includes an animated shimmering effect moving across these shapes
+Creates a sense of progress and reduces perceived loading time
+Provides visual continuity between loading and loaded states
+Improves user experience by indicating content structure before data arrives
+Commonly used in content-heavy interfaces like social media feeds, product listings, and dashboards.
+---------------------------------------------------------------------------------------------------------------
+
+What is the difference between JS expression and JS statement?
+JS Expression:
+
+Produces a value
+Can be used anywhere a value is expected
+Examples: 5 + 5, user.name, isLoggedIn ? 'Profile' : 'Login', functionCall()
+JS Statement:
+
+Performs an action
+Cannot be used where a value is expected
+Examples: if/else, for loops, switch, try/catch, variable declarations
+In React JSX, you can only include expressions inside curly braces {}, not statements.
+----------------------------------------------------------------------------------------------------
+
+What is Conditional Rendering, explain with a code example
+Conditional rendering is displaying different UI elements based on certain conditions. Common patterns include using:
+
+jsx
+function UserProfile({ user, isLoading }) {
+  // Using if-else for conditional rendering
+  if (isLoading) {
+    return <ShimmerUI />;
+  }
+
+  // Using ternary operator
+  return (
+    <div>
+      <h1>User Profile</h1>
+      {user ? (
+        <div>
+          <h2>{user.name}</h2>
+          <p>{user.email}</p>
+          {/* Using logical AND for conditional rendering */}
+          {user.isAdmin && <AdminControls />}
+        </div>
+      ) : (
+        <p>No user found</p>
+      )}
+    </div>
+  );
+}
+
+---------------------------------------------------------------------------------------------------------
+What is CORS?
+Cross-Origin Resource Sharing (CORS) is a security mechanism that allows or restricts web applications running on one origin (domain) to request resources from a different origin. CORS:
+
+Is implemented via HTTP headers
+Prevents potentially malicious websites from accessing APIs or assets from another site
+Requires the server to include specific headers (like Access-Control-Allow-Origin)
+Applies to AJAX requests, fetch calls, web fonts, and more
+May trigger "preflight" OPTIONS requests for complex cross-origin requests
+Without proper CORS headers, browsers block cross-origin requests even if the server would otherwise process them.
+--------------------------------------------------------------------------------------------------
+What is async and await?
+async and await are JavaScript features that simplify working with Promises:
+async:
+Declares a function that returns a Promise implicitly
+Enables the use of await inside the function
+Ensures the function always returns a Promise
+
+await:
+Pauses execution until the Promise resolves
+Extracts the resolved value from the Promise
+Makes asynchronous code read more like synchronous code
+Can only be used inside async functions
+javascript
+async function fetchUserData() {
+  try {
+    const response = await fetch('/api/user');
+    const userData = await response.json();
+    return userData;
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+  }
+}
+
+---------------------------------------------------------------------------
+What is the use of const json = await data.json(); in getRestaurants()
+The line const json = await data.json(); in a getRestaurants() function:
+
+Takes the Response object from a fetch call (stored in data)
+Calls the .json() method, which returns a Promise
+Awaits the Promise to resolve, parsing the response body as JSON
+Stores the resulting JavaScript object/array in the json variable
+The Response object itself doesn't contain the parsed data - it's just a representation of the HTTP response. The .json() method is needed to extract and parse the actual JSON data from the response body, making it usable in JavaScript.
+
+
+
+
+
+
+
+
