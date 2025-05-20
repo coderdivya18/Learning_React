@@ -37,6 +37,11 @@
     font-size: 18px;
     font-weight: bold;
     gap: 18px;
+
+}
+
+.nav-link a {
+    text-decoration: none;
 }
 
 /*Body*/
@@ -217,4 +222,250 @@
     );
     background-size: 800px 104px;
     animation: shimmer 1.2s infinite linear;
+}
+
+/*About Page*/
+.about-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.about-heading {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.about-subheading {
+    font-size: 24px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.about-paragraph {
+    margin-bottom: 15px;
+}
+
+.about-list {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-left: 10px;
+}
+
+.about-link {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+.about-link:hover {
+    text-decoration: underline;
+}
+
+/*contact us Page*/
+.contact-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
+}
+
+.contact-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.contact-form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #444;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.contact-form button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}
+
+/*Error page*/
+.error-container {
+    text-align: center;
+    padding: 60px 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.error-container h1 {
+    font-size: 120px;
+    margin-bottom: 10px;
+    color: #e74c3c;
+}
+
+.error-container h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.error-container p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.home-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.home-link:hover {
+    background-color: #0056b3;
+}
+
+/*Restaurant Menu
+*/
+
+.restaurant-menu {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+}
+
+.restaurant-name {
+
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.menu-heading {
+    font-size: 28px;
+    color: #444;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu-details {
+    flex: 1;
+}
+
+.menu-tags .bestseller {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+.item-name {
+    font-size: 20px;
+    color: #222;
+    margin: 6px 0;
+}
+
+.price {
+    font-size: 16px;
+    margin: 4px 0;
+}
+
+.original-price {
+    color: #2ecc71;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.rating {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 6px 0;
+}
+
+.rating .count {
+    color: #555;
+    font-weight: normal;
+}
+
+.item-description {
+    color: #555;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.menu-image-section {
+    text-align: center;
+    width: 160px;
+}
+
+.menu-img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.add-button {
+    background-color: #2ecc71;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #27ae60;
+}
+
+.customisable {
+    font-size: 13px;
+    color: #777;
+    margin-top: 4px;
 }

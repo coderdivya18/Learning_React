@@ -1,0 +1,186 @@
+What are various ways to add images into our App? Explain with code examples
+1. Import Images (Static Assets):
+import logo from '../assets/logo.png';
+function Header() {
+  return <img src={logo} alt="Logo" />;
+}
+
+2. Public Folder (Static Assets):
+function Banner() {
+  // Image stored in public/images/banner.jpg
+  return <img src="/images/banner.jpg" alt="Banner" />;
+}
+
+3. External URLs:
+function UserAvatar({ user }) {
+  return (
+    <img
+      src={user.profileImageUrl}
+      alt={`${user.name}'s avatar`}
+      onError={(e) => {
+        e.target.src = '/images/default-avatar.png'; // fallback
+      }}
+    />
+  );
+}
+
+4. Base64 Data URLs:
+function IconComponent() {
+  const base64Image = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...";
+  return <img src={base64Image} alt="Icon" />;
+}
+
+5. Dynamic Imports:
+function DynamicImage({ imageName }) {
+  const [imageSrc, setImageSrc] = useState('');
+
+  useEffect(() => {
+    import(`../assets/${imageName}.jpg`)
+      .then(image => setImageSrc(image.default))
+      .catch(err => console.log('Image not found'));
+  }, [imageName]);
+
+  return imageSrc ? <img src={imageSrc} alt={imageName} /> : null;
+}
+
+6. CSS Background Images:
+function HeroSection() {
+  const heroStyle = {
+    backgroundImage: "url('/images/hero-bg.jpg')",
+    backgroundSize: 'cover',
+    height: '400px'
+  };
+
+  return <div style={heroStyle}>Hero Content</div>;
+}
+-------------------------------------------------------------------------------------------------
+What would happen if we do console.log(useState())?
+console.log(useState());
+// Output: [undefined, function]
+
+When you call useState() without an initial value:
+It returns an array with two elements
+First element: undefined (the state value, since no initial value was provided)
+Second element: A setter function to update the state
+The component would still work, but the initial state would be undefined
+
+With an initial value:
+console.log(useState("hello"));
+// Output: ["hello", function]
+--------------------------------------------------------------------------------------
+How will useEffect behave if we don't add a dependency array?
+Without a dependency array, useEffect runs after every render (both initial and subsequent re-renders):
+function Component() {
+  const [count, setCount] = useState(0);
+
+  // This runs after every render
+  useEffect(() => {
+    console.log('Effect runs after every render');
+    // Be careful: this could cause infinite loops!
+  }); // No dependency array
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+
+Behavior:
+Runs after initial mount
+Runs after every state update
+Runs after every prop change
+Can easily cause infinite loops if the effect triggers state updates
+Generally not recommended unless you specifically need this behavior
+
+Comparison:
+jsx// Runs after every render
+useEffect(() => {});
+
+// Runs only once after mount
+useEffect(() => {}, []);
+
+// Runs when dependencies change
+useEffect(() => {}, [dependency1, dependency2]);
+
+--------------------------------------------------------
+What is SPA?
+Single Page Application (SPA) is a web application that loads a single HTML page and dynamically updates content as the user interacts with the app, without requiring full page reloads.
+Characteristics:
+Initial page load downloads the entire application
+Subsequent navigation happens via JavaScript
+Content updates dynamically without page refreshes
+URL changes are handled by client-side routing
+Faster user experience after initial load
+Maintains application state across navigation
+
+Examples: Gmail, Facebook, Twitter, React/Angular/Vue applications
+Advantages:
+Smooth, app-like user experience
+Faster navigation after initial load
+Reduced server requests
+Better caching capabilities
+
+Disadvantages:
+Larger initial bundle size
+SEO challenges (though solvable with SSR)
+Browser history management complexity
+Initial load can be slower
+------------------------------------------------------------------------------------------
+What is difference between Client Side Routing and Server Side Routing?
+Server Side Routing:
+User clicks link → Request sent to server → Server processes route →
+New HTML page generated → Full page sent to browser → Page reloads
+Characteristics:
+Each route request goes to the server
+Server decides what content to send
+Full page refresh for each navigation
+SEO-friendly by default
+Simpler implementation
+Each page is a separate HTML document
+
+Example (Express.js):
+app.get('/users', (req, res) => {
+  res.render('users.html');
+});
+
+app.get('/profile', (req, res) => {
+  res.render('profile.html');
+});
+
+Client Side Routing:
+User clicks link → JavaScript intercepts → Route handled in browser →
+Content updated dynamically → URL updated (no page reload)
+Characteristics:
+Routing handled by JavaScript in the browser
+No server requests for navigation
+Content updates without page refresh
+Requires initial app download
+Faster subsequent navigation
+Single HTML document with dynamic content
+
+Example (React Router):
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+Key Differences:
+Aspect                     Server Side                            Client Side
+Page Reloads                 Yes                                      No
+Initial Load                 Faster                                   Slower
+Navigation Speed             Slower                                   Faster
+SEO                          Better                                   Requires extra work
+Server Load                  Higher                                   Lower
+Browser Support              Universal                                Modern browsers
+Offline Capability           Limited                                  Better

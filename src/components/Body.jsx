@@ -2,8 +2,10 @@ import RestaurantCard from "./RestaurantCard";
 import resData from "../utils/mockResListData.json";
 import {useEffect, useState} from "react";
 import ShimmerRestaurantCard from "./ShimmerRestaurantCard";
+import {Link} from "react-router-dom";
 
 const Body = () => {
+    console.log(resData);
     let mockResList =
         resData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 
@@ -20,8 +22,9 @@ const Body = () => {
         try {
             const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING");
             const json = await data.json();
+            console.log(json);
             const restaurants =
-                json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+                json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
             setListOfRestaurants(restaurants || []);
         } catch (err) {
             console.log(err);
@@ -74,7 +77,9 @@ const Body = () => {
 
             <div className="restaurants-container">
                 {(filteredList.length > 0 ? filteredList : listOfRestaurants)?.map((res) => (
-                    <RestaurantCard resData={res} key={res?.info?.id}/>
+                    <Link to={"/restaurants/" + res?.info?.id} key={res?.info?.id}>
+                        <RestaurantCard resData={res}/>
+                    </Link>
                 ))}
             </div>
         </div>
