@@ -1,0 +1,360 @@
+How do you create Nested Routes react-router-dom configuration
+Nested routes allow you to render components inside other components based on URL segments:
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+
+// Layout component that renders nested routes
+function DashboardLayout() {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <nav>
+        <Link to="/dashboard/profile">Profile</Link>
+        <Link to="/dashboard/settings">Settings</Link>
+      </nav>
+      {/* Outlet renders the nested route components */}
+      <Outlet />
+    </div>
+  );
+}
+
+// Create router with nested configuration
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "profile", // matches /dashboard/profile
+        element: <Profile />
+      },
+      {
+        path: "settings", // matches /dashboard/settings
+        element: <Settings />
+      },
+      {
+        path: "users",
+        element: <UsersLayout />,
+        children: [
+          {
+            path: ":userId", // matches /dashboard/users/123
+            element: <UserDetail />
+          }
+        ]
+      }
+    ]
+  }
+]);
+
+function App() {
+  return <RouterProvider router={router} />;
+}
+
+Alternative syntax using Routes and Route:
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="users" element={<UsersLayout />}>
+            <Route path=":userId" element={<UserDetail />} />
+          </Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+createHashRouter and createMemoryRouter from React Router
+createHashRouter:
+Uses hash-based routing (URLs with #) instead of browser history API:
+import { createHashRouter } from 'react-router-dom';
+const router = createHashRouter([
+  {
+    path: "/",
+    element: <Home />
+  },
+  {
+    path: "/about",
+    element: <About />
+  }
+]);
+
+// URLs will look like: http://example.com/#/about
+Use cases:
+Static file hosting without server configuration
+Environments where you can't configure server redirects
+Electron apps or file:// protocol scenarios
+
+createMemoryRouter:
+Keeps routing history in memory instead of browser URL:
+import { createMemoryRouter } from 'react-router-dom';
+
+const router = createMemoryRouter([
+  {
+    path: "/",
+    element: <Home />
+  },
+  {
+    path: "/test",
+    element: <Test />
+  }
+], {
+  initialEntries: ["/", "/test"],
+  initialIndex: 1 // Start at /test
+});
+
+Use cases:
+Testing environments
+React Native applications
+Server-side rendering
+Embedded applications where URL shouldn't change
+------------------------------------------------------------------------------
+
+What is the order of life cycle method calls in Class Based Components
+Mounting Phase:
+
+constructor(props)
+componentDidMount()
+
+Updating Phase (when props or state change):
+componentDidUpdate(prevProps, prevState)
+Unmounting Phase:
+componentWillUnmount()
+Error Handling:
+componentDidCatch(error, errorInfo) (when error occurs in child components)
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    console.log('1. Constructor called');
+    super(props);
+    this.state = { count: 0 };
+  }
+
+  componentDidMount() {
+    console.log('2. ComponentDidMount called');
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('3. ComponentDidUpdate called');
+  }
+
+  componentWillUnmount() {
+    console.log('4. ComponentWillUnmount called');
+  }
+
+  render() {
+    console.log('Render called');
+    return <div>{this.state.count}</div>;
+  }
+}
+-----------------------------------------------------------------------------------------
+Why do we use componentDidMount?
+componentDidMount is called once after the component is mounted (inserted into the DOM). It's used for:
+API calls and data fetching
+Setting up subscriptions
+DOM manipulations
+Starting timers
+Initializing third-party libraries
+
+class UserProfile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { user: null, loading: true };
+  }
+
+  componentDidMount() {
+    // API call after component mounts
+    fetch(`/api/users/${this.props.userId}`)
+      .then(response => response.json())
+      .then(user => {
+        this.setState({ user, loading: false });
+      });
+
+    // Set up event listeners
+    window.addEventListener('resize', this.handleResize);
+
+    // Start a timer
+    this.timer = setInterval(() => {
+      console.log('Timer tick');
+    }, 1000);
+  }
+
+  handleResize = () => {
+    // Handle window resize
+  }
+
+  render() {
+    return this.state.loading ? <div>Loading...</div> : <div>{this.state.user.name}</div>;
+  }
+}
+---------------------------------------------------------------------------------------
+Why do we use componentWillUnmount? Show with example
+componentWillUnmount is called just before the component is removed from the DOM. It's used for cleanup to prevent memory leaks:
+class ChatComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { messages: [] };
+  }
+
+  componentDidMount() {
+    // Set up WebSocket connection
+    this.ws = new WebSocket('ws://chat-server.com');
+    this.ws.onmessage = (event) => {
+      const message = JSON.parse(event.data);
+      this.setState(prevState => ({
+        messages: [...prevState.messages, message]
+      }));
+    };
+
+    // Set up event listener
+    document.addEventListener('keydown', this.handleKeyPress);
+
+    // Set up timer
+    this.timer = setInterval(() => {
+      this.sendHeartbeat();
+    }, 30000);
+  }
+
+  componentWillUnmount() {
+    // Clean up WebSocket connection
+    if (this.ws) {
+      this.ws.close();
+    }
+
+    // Remove event listener
+    document.removeEventListener('keydown', this.handleKeyPress);
+
+    // Clear timer
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+
+    // Cancel any pending API requests
+    if (this.abortController) {
+      this.abortController.abort();
+    }
+  }
+
+  handleKeyPress = (event) => {
+    // Handle key press
+  }
+
+  sendHeartbeat = () => {
+    if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+      this.ws.send(JSON.stringify({ type: 'heartbeat' }));
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.messages.map(msg => (
+          <div key={msg.id}>{msg.text}</div>
+        ))}
+      </div>
+    );
+  }
+}
+------------------------------------------------------------------------------------------
+Why do we use super(props) in constructor?
+super(props) is required to call the parent class constructor and properly initialize the component:
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props); // Required to call React.Component constructor
+
+    // Without super(props), this.props would be undefined
+    console.log(this.props); // Now this works
+
+    this.state = {
+      count: props.initialCount || 0
+    };
+  }
+}
+
+Why it's needed:
+JavaScript requirement: In ES6 classes, you must call super() before using this
+Props initialization: Ensures this.props is available in the constructor
+React initialization: Properly initializes the React component instance
+
+What happens without super(props):
+class BadComponent extends React.Component {
+  constructor(props) {
+    // super(); // Only calling super() without props
+
+    console.log(this.props); // undefined!
+    // Even though props are passed to constructor,
+    // this.props won't be set without super(props)
+  }
+}
+-------------------------------------------------------------------------------------------------------
+Why can't we have the callback function of useEffect async?
+The useEffect callback cannot be async because:-
+Return value expectation: useEffect expects either nothing or a cleanup function to be returned
+Async functions return Promises: An async function always returns a Promise, not a cleanup function
+Timing issues: React would try to call the Promise as a cleanup function
+
+Wrong approach:
+jsx// This doesn't work!
+useEffect(async () => {
+  const data = await fetchData();
+  setData(data);
+}, []); // Returns a Promise, not a cleanup function
+
+Correct approaches:
+Option 1: Define async function inside useEffect
+useEffect(() => {
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch('/api/user');
+      const userData = await response.json();
+      setUser(userData);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  fetchUserData();
+}, []);
+
+Option 2: Using .then() for Promises
+useEffect(() => {
+  fetch('/api/user')
+    .then(response => response.json())
+    .then(userData => setUser(userData))
+    .catch(error => setError(error.message));
+}, []);
+
+Option 3: With cleanup (handling component unmount)
+useEffect(() => {
+  let cancelled = false;
+    const fetchData = async () => {
+    try {
+      const response = await fetch('/api/data');
+      const data = await response.json();
+
+      if (!cancelled) {
+        setData(data);
+      }
+    } catch (error) {
+      if (!cancelled) {
+        setError(error.message);
+      }
+    }
+  };
+
+  fetchData();
+
+  // Cleanup function
+  return () => {
+    cancelled = true;
+  };
+}, []);

@@ -1,4 +1,5 @@
 import React from 'react';
+import UserClass from "./UserClass";
 
 const About = () => {
     return (
@@ -32,6 +33,8 @@ const About = () => {
                 joy to your doorstep.
                 We believe every meal should be a memorable experience!
             </p>
+
+            <UserClass name={"Divya Dube"} location={"Bangalore"} email={"dubedivya1992@gmail.com"}/>
 
             <h2 className="about-subheading">Contact Us</h2>
             <p className="about-paragraph">
