@@ -1,36 +1,14 @@
 import RestaurantCard from "./RestaurantCard";
-import resData from "../utils/mockResListData.json";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import ShimmerRestaurantCard from "./ShimmerRestaurantCard";
 import {Link} from "react-router-dom";
+import useOnlineStatus from "../utils/Custom Hooks/useOnlineStatus";
+import useFetchAllRestaurants from "../utils/Custom Hooks/useFetchAllRestaurants";
 
 const Body = () => {
-    console.log(resData);
-    let mockResList =
-        resData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-
-    const [listOfRestaurants, setListOfRestaurants] = useState(mockResList || []);
+    const listOfRestaurants = useFetchAllRestaurants();
     const [filteredList, setFilteredList] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-
-    console.log(listOfRestaurants);
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    const fetchData = async () => {
-        try {
-            const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING");
-            const json = await data.json();
-            console.log(json);
-            const restaurants =
-                json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-            setListOfRestaurants(restaurants || []);
-        } catch (err) {
-            console.log(err);
-        }
-
-    };
 
     const filterTopRatedRestaurant = () => {
         const filtered = listOfRestaurants.filter(
@@ -46,38 +24,71 @@ const Body = () => {
         setFilteredList(filtered);
     };
 
-    //conditional rendering
-    if (listOfRestaurants.length === 0) {
+    if (listOfRestaurants?.length === 0) {
         return <ShimmerRestaurantCard/>;
     }
 
+    const onlineStatus = useOnlineStatus();
+    if (onlineStatus === false) {
+        return (
+            <div className="flex flex-col justify-center items-center h-screen text-center p-5">
+                <h2 className="text-xl font-semibold text-gray-700">Looks like you're offline!</h2>
+                <p className="text-gray-500 mt-2">Please check your internet connection and try again.</p>
+            </div>
+        );
+    }
+
     return (
-        <div className="body">
-            <div className="features-container">
-                <div className="filters">
-                    <button className="filter-btn" onClick={filterTopRatedRestaurant}>
+        <div className="px-5 md:px-10 lg:px-20 font-manrope">
+            <div className="my-12 flex flex-col md:flex-row md:justify-between md:items-center gap-5">
+                <div className="flex gap-3 flex-wrap">
+                    <button
+                        onClick={filterTopRatedRestaurant}
+                        className="border border-gray-300 rounded px-4 py-2 text-base font-medium hover:bg-gray-100"
+                    >
                         Top Rated Restaurants
                     </button>
-                    <button className="veg-only-btn" onClick={filterVegOnlyRestaurant}>
+                    <button
+                        onClick={filterVegOnlyRestaurant}
+                        className="border border-gray-300 rounded px-4 py-2 text-base font-medium hover:bg-gray-100"
+                    >
                         Veg Only
                     </button>
-                    <button onClick={() => setFilteredList([])}>Clear Filters</button>
+                    <button
+                        onClick={() => setFilteredList([])}
+                        className="border border-gray-300 rounded px-4 py-2 text-base font-medium hover:bg-gray-100"
+                    >
+                        Clear Filters
+                    </button>
                 </div>
 
-                <div className="search-container">
-                    <input type="text" placeholder="Search" className="search-bar" value={searchTerm}
-                           onChange={(e) => setSearchTerm(e.target.value)}/>
-                    <button onClick={() => {
-                        const filteredRestBySearchTerm = listOfRestaurants.filter(restaurant => restaurant?.info?.name.toLowerCase().includes(searchTerm.toLowerCase()));
-                        setFilteredList(filteredRestBySearchTerm);
-                    }}>Search
+                <div className="flex items-center gap-2">
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="px-3 py-2 border border-gray-300 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <button
+                        onClick={() => {
+                            const filtered = listOfRestaurants.filter((restaurant) =>
+                                restaurant?.info?.name
+                                    .toLowerCase()
+                                    .includes(searchTerm.toLowerCase())
+                            );
+                            setFilteredList(filtered);
+                        }}
+                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    >
+                        Search
                     </button>
                 </div>
             </div>
 
-            <div className="restaurants-container">
+            <div className="flex flex-wrap gap-8 justify-center">
                 {(filteredList.length > 0 ? filteredList : listOfRestaurants)?.map((res) => (
-                    <Link to={"/restaurants/" + res?.info?.id} key={res?.info?.id}>
+                    <Link to={`/restaurants/${res?.info?.id}`} key={res?.info?.id}>
                         <RestaurantCard resData={res}/>
                     </Link>
                 ))}

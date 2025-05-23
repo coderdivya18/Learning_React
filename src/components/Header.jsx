@@ -1,31 +1,35 @@
-//Header Component
 import {LOGO_URL} from "../utils/constants";
 import {Link} from "react-router-dom";
+import useOnlineStatus from "../utils/Custom Hooks/useOnlineStatus";
 
 const Header = () => {
+    const onlineStatus = useOnlineStatus();
+
     return (
-        <header className="header">
+        <header className="flex items-center justify-between px-6 py-4 bg-white shadow-md font-manrope">
             <img
                 src={LOGO_URL}
-                className="logo"
                 alt="logo"
-                width="100px"
-                height="100px"
+                className="w-24 h-24 object-contain"
             />
 
-            <nav className="navbar">
-                <ul className="nav-items">
-                    <li className="nav-link">
-                        <Link to="/">Home</Link>
+            <nav>
+                <ul className="flex gap-6 items-center text-gray-700 text-md font-bold">
+                    <li>Online Status: {onlineStatus ? "✅" : "🔴"}</li>
+                    <li>
+                        <Link to="/" className="hover:text-blue-600 transition">Home</Link>
                     </li>
-                    <li className="nav-link">
-                        <Link to="/about">About</Link>
+                    <li>
+                        <Link to="/about" className="hover:text-blue-600 transition">About</Link>
                     </li>
-                    <li className="nav-link">
-                        <Link to="/contact">Contact</Link>
+                    <li>
+                        <Link to="/contact" className="hover:text-blue-600 transition">Contact</Link>
                     </li>
-                    <li className="nav-link">
-                        <Link to="/cart">Cart</Link>
+                    <li>
+                        <Link to="/grocery" className="hover:text-blue-600 transition">Grocery</Link>
+                    </li>
+                    <li>
+                        <Link to="/cart" className="hover:text-blue-600 transition">Cart</Link>
                     </li>
                 </ul>
             </nav>

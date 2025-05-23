@@ -1,33 +1,36 @@
-//Restaurant Card Component
-
 import {CDN_URL} from "../utils/constants";
 
 const RestaurantCard = ({resData}) => {
-    // console.log(resData);
-    const {cloudinaryImageId, name, avgRating, cuisines, costForTwo, locality} =
-        resData?.info;
+    const {
+        cloudinaryImageId,
+        name,
+        avgRating,
+        cuisines,
+        costForTwo,
+        locality,
+        sla,
+    } = resData?.info;
 
     return (
-        <div className="restaurant-card">
-            <div className="card-image">
+        <div
+            className="w-60 rounded-2xl shadow-md overflow-hidden bg-white hover:shadow-lg transition-shadow duration-300 font-manrope">
+            <div className="w-full h-44 overflow-hidden">
                 <img
-                    className="restaurant-image"
+                    className="object-cover w-full h-full"
                     src={CDN_URL + cloudinaryImageId}
-                    alt="Burger"
-                    width="230px"
-                    height="180px"
+                    alt={name}
                 />
             </div>
-            <div className="card-content">
-                <h2 className="restaurant-name">{name}</h2>
-                <div className="details">
-                    <span className="rating">⭐ {avgRating}</span>
-                    <span className="dot">•</span>
-                    <span className="time">{resData?.info?.sla?.deliveryTime} mins</span>
+            <div className="p-4 space-y-1">
+                <h2 className="text-lg font-semibold truncate text-gray-800">{name}</h2>
+                <div className="text-sm text-gray-600 flex items-center gap-1">
+                    <span>⭐ {avgRating}</span>
+                    <span className="text-gray-400">•</span>
+                    <span>{sla?.deliveryTime} mins</span>
                 </div>
-                <p className="cuisine">{cuisines.join(", ")}</p>
-                <p className="costForTwo">{costForTwo}</p>
-                <p className="location">{locality}</p>
+                <p className="text-sm text-gray-500 truncate">{cuisines.join(", ")}</p>
+                <p className="text-sm text-gray-600">{costForTwo}</p>
+                <p className="text-xs text-gray-400">{locality}</p>
             </div>
         </div>
     );
