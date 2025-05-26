@@ -1,9 +1,12 @@
 import {LOGO_URL} from "../utils/constants";
 import {Link} from "react-router-dom";
 import useOnlineStatus from "../utils/Custom Hooks/useOnlineStatus";
+import UserContext from "../utils/UserContext";
+import {useContext} from "react";
 
 const Header = () => {
     const onlineStatus = useOnlineStatus();
+    const {loggedInUser} = useContext(UserContext);
 
     return (
         <header className="flex items-center justify-between px-6 py-4 bg-white shadow-md font-manrope">
@@ -30,6 +33,9 @@ const Header = () => {
                     </li>
                     <li>
                         <Link to="/cart" className="hover:text-blue-600 transition">Cart</Link>
+                    </li>
+                    <li>
+                        {loggedInUser}
                     </li>
                 </ul>
             </nav>

@@ -24,9 +24,9 @@ const RestaurantCard = ({resData}) => {
             <div className="p-4 space-y-1">
                 <h2 className="text-lg font-semibold truncate text-gray-800">{name}</h2>
                 <div className="text-sm text-gray-600 flex items-center gap-1">
-                    <span>⭐ {avgRating}</span>
+                    <span className="text-pink-600 font-semibold">⭐ {avgRating}</span>
                     <span className="text-gray-400">•</span>
-                    <span>{sla?.deliveryTime} mins</span>
+                    <span className="text-blue-700 font-semibold">{sla?.deliveryTime} mins</span>
                 </div>
                 <p className="text-sm text-gray-500 truncate">{cuisines.join(", ")}</p>
                 <p className="text-sm text-gray-600">{costForTwo}</p>
@@ -35,5 +35,17 @@ const RestaurantCard = ({resData}) => {
         </div>
     );
 };
+
+//Higher Order Component
+export const PromotedLabelRestCard = (RestaurantCard) => {
+    return (props) => {
+        return (
+            <div>
+                <label>Promoted</label>
+                <RestaurantCard {...props}/>
+            </div>
+        )
+    }
+}
 
 export default RestaurantCard;

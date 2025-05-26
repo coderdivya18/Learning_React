@@ -1,15 +1,21 @@
-import RestaurantCard from "./RestaurantCard";
-import {useState} from "react";
+import RestaurantCard, {PromotedLabelRestCard} from "./RestaurantCard";
+import {useContext, useState} from "react";
 import ShimmerRestaurantCard from "./ShimmerRestaurantCard";
 import {Link} from "react-router-dom";
 import useOnlineStatus from "../utils/Custom Hooks/useOnlineStatus";
 import useFetchAllRestaurants from "../utils/Custom Hooks/useFetchAllRestaurants";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
     const listOfRestaurants = useFetchAllRestaurants();
     const [filteredList, setFilteredList] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
 
+    //userContext
+    const {loggedInUser, setUsername} = useContext(UserContext);
+
+    //Higher orderComponent
+    const RestCardPromoted = PromotedLabelRestCard(RestaurantCard)
     const filterTopRatedRestaurant = () => {
         const filtered = listOfRestaurants.filter(
             (res) => parseFloat(res?.info?.avgRating) > 4
@@ -60,6 +66,12 @@ const Body = () => {
                     >
                         Clear Filters
                     </button>
+                    <input type="text"
+                           className="border border-gray-300 rounded px-4 py-2 text-base font-medium hover:bg-gray-100"
+                           placeholder="Enter username"
+                           value={loggedInUser}
+                           onChange={(e) => setUsername(e.target.value)}
+                    />
                 </div>
 
                 <div className="flex items-center gap-2">
@@ -86,7 +98,7 @@ const Body = () => {
                 </div>
             </div>
 
-            <div className="flex flex-wrap gap-8 justify-center">
+            <div className="flex flex-wrap gap-8">
                 {(filteredList.length > 0 ? filteredList : listOfRestaurants)?.map((res) => (
                     <Link to={`/restaurants/${res?.info?.id}`} key={res?.info?.id}>
                         <RestaurantCard resData={res}/>
