@@ -3,10 +3,15 @@ import {Link} from "react-router-dom";
 import useOnlineStatus from "../utils/Custom Hooks/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 import {useContext} from "react";
+import {useSelector} from "react-redux";
 
 const Header = () => {
     const onlineStatus = useOnlineStatus();
     const {loggedInUser} = useContext(UserContext);
+
+    //Subscribing to store
+    const items = useSelector((store) => store.cart.items);
+    console.log(items);
 
     return (
         <header className="flex items-center justify-between px-6 py-4 bg-white shadow-md font-manrope">
@@ -32,7 +37,9 @@ const Header = () => {
                         <Link to="/grocery" className="hover:text-blue-600 transition">Grocery</Link>
                     </li>
                     <li>
-                        <Link to="/cart" className="hover:text-blue-600 transition">Cart</Link>
+                        <Link to="/cart"
+                              className="hover:text-blue-600 transition">Cart <span
+                            className="text-bold ">({items?.length})</span></Link>
                     </li>
                     <li>
                         {loggedInUser}

@@ -1,7 +1,14 @@
 import React from 'react';
+import {useDispatch} from "react-redux";
+import {addToCart} from "../utils/redux/slices/cartSlice";
 
 const CategoryWiseItemList = ({itemCards}) => {
-    console.log(itemCards);
+    //console.log(itemCards);
+
+    const dispatch = useDispatch();
+    const handleAddToCart = (item) => {
+        dispatch(addToCart(item));
+    }
     return (
         <div className="mb-8">
             {itemCards?.map((item) => {
@@ -34,6 +41,7 @@ const CategoryWiseItemList = ({itemCards}) => {
                                     className="w-full h-full object-cover rounded-md shadow"
                                 />
                                 <button
+                                    onClick={() => handleAddToCart(item)}
                                     className="absolute bottom-[-12px] left-1/2 transform -translate-x-1/2 bg-white border text-sm font-bold border-gray-300 px-4 py-1 rounded shadow hover:bg-gray-100 text-green-800">
                                     ADD
                                 </button>

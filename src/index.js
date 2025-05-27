@@ -10,6 +10,9 @@ import Body from "./components/Body";
 import RestaurantMenu from "./components/RestaurantMenu";
 import ShimmerRestaurantCard from "./components/ShimmerRestaurantCard";
 import UserContext from "./utils/UserContext";
+import {Provider} from "react-redux";
+import store from "./utils/redux/store/store";
+import CartSummary from "./components/CartSummary";
 // import Grocery from "./components/Grocery";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -27,12 +30,15 @@ const App = () => {
     }, [])
 
     return (
-        <UserContext.Provider value={{loggedInUser: username, setUsername}}>
-            <div className="app-container">
-                <Header/>
-                <Outlet/>
-            </div>
-        </UserContext.Provider>
+        <Provider store={store}>
+            <UserContext.Provider value={{loggedInUser: username, setUsername}}>
+                <div className="app-container">
+                    <Header/>
+                    <Outlet/>
+                </div>
+            </UserContext.Provider>
+        </Provider>
+
 
     );
 };
@@ -61,6 +67,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/restaurants/:resId",
                 element: <RestaurantMenu/>
+            },
+            {
+                path: "/cart",
+                element: <CartSummary/>
             }
         ],
         errorElement: <ErrorPage/>
