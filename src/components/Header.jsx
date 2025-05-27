@@ -2,12 +2,13 @@ import {LOGO_URL} from "../utils/constants";
 import {Link} from "react-router-dom";
 import useOnlineStatus from "../utils/Custom Hooks/useOnlineStatus";
 import UserContext from "../utils/UserContext";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {useSelector} from "react-redux";
 
 const Header = () => {
     const onlineStatus = useOnlineStatus();
     const {loggedInUser} = useContext(UserContext);
+    const [btnNameReact, setBtnNameReact] = useState("Login");
 
     //Subscribing to store
     const items = useSelector((store) => store.cart.items);
@@ -41,6 +42,16 @@ const Header = () => {
                               className="hover:text-blue-600 transition">Cart <span
                             className="text-bold ">({items?.length})</span></Link>
                     </li>
+                    <button
+                        className="login px-2 py-1 text-white bg-blue-600 hover:bg-blue-700 rounded transition duration-300"
+                        onClick={() => {
+                            btnNameReact === "Login"
+                                ? setBtnNameReact("Logout")
+                                : setBtnNameReact("Login");
+                        }}
+                    >
+                        {btnNameReact}
+                    </button>
                     <li>
                         {loggedInUser}
                     </li>

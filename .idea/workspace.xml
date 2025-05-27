@@ -5,15 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aafd69a6-60c5-46b3-86b3-43d5a6e88589" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/CartSummary.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/redux/slices/cartSlice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/redux/store/store.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.parcelrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/__tests__/Contact.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/__tests__/Header.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/__tests__/Restaurantcard.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mocks/mockResMenu.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mocks/resCardMock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CategoryWiseItemList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CategoryWiseItemList.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/mockResListData.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/mocks/mockResListData.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +29,8 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="JSX File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -51,7 +55,10 @@
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
     "JavaScript Debug.index.html.executor": "Run",
+    "Jest.Contact us component should render without crashing.executor": "Run",
+    "Jest.Submit button inside contact component.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js Test Runner.Send Message text inside contact component.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
@@ -61,6 +68,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "D:/FrontendPractice/NamasteReact/node_modules/jest",
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "C:\\Users\\webco\\AppData\\Roaming\\npm\\node_modules\\prettier",
     "rearrange.code.on.save": "true",
@@ -74,19 +82,57 @@
       <recent name="D:\FrontendPractice\NamasteReact\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\FrontendPractice\NamasteReact\src\mocks" />
       <recent name="D:\FrontendPractice\NamasteReact\src\utils\redux" />
       <recent name="D:\FrontendPractice\NamasteReact\src" />
       <recent name="D:\FrontendPractice\NamasteReact" />
       <recent name="D:\FrontendPractice\NamasteReact\dist" />
-      <recent name="D:\FrontendPractice\NamasteReact\Basics" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js Test Runner.Send Message text inside contact component">
+    <configuration name="Contact us component should render without crashing" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/__tests__/Contact.test.js" />
+      <test-names>
+        <test-name value="Contact us component should render without crashing" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Submit button inside contact component" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/__tests__/Contact.test.js" />
+      <test-names>
+        <test-name value="Submit button inside contact component" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/NamasteReact/Basics/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="Send Message text inside contact component" type="NodeJsTestRunner" temporary="true">
+      <node-interpreter value="project" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/__tests__/Contact.test.js" />
+      <test-names>
+        <test-name value="Send Message text inside contact component" />
+      </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js Test Runner.Send Message text inside contact component" />
+        <item itemvalue="Jest.Contact us component should render without crashing" />
+        <item itemvalue="Jest.Submit button inside contact component" />
         <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
@@ -107,7 +153,7 @@
       <option name="presentableId" value="Default" />
       <updated>1746946485349</updated>
       <workItem from="1746946486400" duration="38667000" />
-      <workItem from="1747372150076" duration="68768000" />
+      <workItem from="1747372150076" duration="79148000" />
     </task>
     <servers />
   </component>
